@@ -1,0 +1,114 @@
+identity:
+  author: "haro007"
+  name: "claude_agent"
+  label:
+    en_US: "Claude_Agent"
+    zh_Hans: "Claude_Agent"
+    pt_BR: "Claude_Agent"
+    ja_JP: "Claude_Agent"
+  description:
+    en_US: "Claude_Agent is an Agent plugin built on claude_agent_sdk that delegates tool calling, turn limiting and permissions to the SDK."
+    zh_Hans: "基于 claude_agent_sdk 的 Agent 插件，将工具调用、轮数控制与权限管理委托给 SDK"
+    pt_BR: "Claude_Agent é um plugin de Agent construído sobre o claude_agent_sdk que delega chamadas de ferramenta, limite de turnos e permissões ao SDK."
+    ja_JP: "Claude_Agent は claude_agent_sdk 上に構築された Agent プラグインで、ツール呼び出し、ターン制限、権限を SDK に委譲します。"
+  icon: "icon.svg"
+
+credentials_for_provider:
+  ANTHROPIC_BASE_URL:
+    type: text-input
+    required: false
+    default: https://api.deepseek.com/anthropic
+    label:
+      en_US: Anthropic Base URL
+      zh_Hans: Anthropic API 地址
+    human_description:
+      en_US: The base URL for the Anthropic-compatible API endpoint.
+      zh_Hans: 兼容 Anthropic 协议的 API 端点地址
+    placeholder:
+      en_US: https://api.deepseek.com/anthropic
+      zh_Hans: https://api.deepseek.com/anthropic
+
+  ANTHROPIC_AUTH_TOKEN:
+    type: secret-input
+    required: true
+    label:
+      en_US: API Token
+      zh_Hans: API 密钥
+    human_description:
+      en_US: The authentication token for the Anthropic-compatible API.
+      zh_Hans: 用于 Anthropic 兼容 API 的认证密钥
+    placeholder:
+      en_US: sk-xxxxxxxxxxxxxxxxxxxxxxxx
+      zh_Hans: sk-xxxxxxxxxxxxxxxxxxxxxxxx
+
+  ANTHROPIC_MODEL:
+    type: text-input
+    required: false
+    label:
+      en_US: Default Model
+      zh_Hans: 默认模型
+    human_description:
+      en_US: The model name used when no model is selected in the tool parameters (sets ANTHROPIC_MODEL).
+      zh_Hans: 当工具参数中未选择模型时使用的模型名称（设置 ANTHROPIC_MODEL）
+    placeholder:
+      en_US: deepseek-v4-pro
+      zh_Hans: deepseek-v4-pro
+
+  ANTHROPIC_DEFAULT_SONNET_MODEL_NAME:
+    type: text-input
+    required: false
+    label:
+      en_US: Default Sonnet Model Name
+      zh_Hans: 默认 Sonnet 模型名称
+    human_description:
+      en_US: Model name alias for the Sonnet tier.
+      zh_Hans: Sonnet 层级的模型名称别名
+    placeholder:
+      en_US: deepseek-v4-pro
+      zh_Hans: deepseek-v4-pro
+
+  ANTHROPIC_DEFAULT_OPUS_MODEL_NAME:
+    type: text-input
+    required: false
+    label:
+      en_US: Default Opus Model Name
+      zh_Hans: 默认 Opus 模型名称
+    human_description:
+      en_US: Model name alias for the Opus tier.
+      zh_Hans: Opus 层级的模型名称别名
+    placeholder:
+      en_US: deepseek-v4-pro
+      zh_Hans: deepseek-v4-pro
+
+  ANTHROPIC_DEFAULT_HAIKU_MODEL:
+    type: text-input
+    required: false
+    label:
+      en_US: Default Haiku Model
+      zh_Hans: 默认 Haiku 模型
+    human_description:
+      en_US: Model name alias for the Haiku tier.
+      zh_Hans: Haiku 层级的模型名称别名
+    placeholder:
+      en_US: deepseek-v4-pro
+      zh_Hans: deepseek-v4-pro
+
+  ANTHROPIC_DEFAULT_FABLE_MODEL_NAME:
+    type: text-input
+    required: false
+    label:
+      en_US: Default Fable Model Name
+      zh_Hans: 默认 Fable 模型名称
+    human_description:
+      en_US: Model name alias for the Fable tier.
+      zh_Hans: Fable 层级的模型名称别名
+    placeholder:
+      en_US: deepseek-v4-pro
+      zh_Hans: deepseek-v4-pro
+
+tools:
+  - tools/claude_agent.yaml
+  - tools/skill_manager.yaml
+extra:
+  python:
+    source: provider/claude_agent.py

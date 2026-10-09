@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#0d0d1a"/>
+  <!-- Claude-style "C" -->
+  <path d="M22 20h8c6 0 12 4 12 12s-6 12-12 12h-8V20z" fill="#d97706" stroke="#f59e0b" stroke-width="1.5"/>
+  <circle cx="34" cy="32" r="6" fill="#0d0d1a"/>
+  <!-- Agent spark -->
+  <path d="M48 14l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6z" fill="#f59e0b"/>
+</svg>

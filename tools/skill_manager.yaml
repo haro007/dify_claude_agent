@@ -1,0 +1,50 @@
+identity:
+  name: "skill_manager"
+  author: "haro007"
+  label:
+    en_US: "Skill Manager"
+    zh_Hans: "技能管理"
+    pt_BR: "Skill Manager"
+    ja_JP: "スキル管理"
+description:
+  human:
+    en_US: "Manage local skill packages: view / add (zip) / delete."
+    zh_Hans: "管理本地 skills 技能包：查看技能 / 新增技能(zip) / 删除技能N"
+    pt_BR: "Gerenciar pacotes de habilidades locais: visualizar / adicionar (zip) / excluir."
+    ja_JP: "ローカルのスキルパッケージを管理：表示 / 追加(zip) / 削除。"
+  llm: "Manage local skill packages: view / add (zip) / delete."
+parameters:
+  - name: command
+    type: string
+    required: true
+    label:
+      en_US: Command
+      zh_Hans: 命令
+      pt_BR: Command
+      ja_JP: コマンド
+    human_description:
+      en_US: "Supported commands: 查看技能 / 新增技能 / 删除技能N (e.g. 删除技能2)"
+      zh_Hans: "支持：查看技能、新增技能、删除技能N（例如 删除技能2）"
+      pt_BR: "Comandos suportados: 查看技能 / 新增技能 / 删除技能N"
+      ja_JP: "対応コマンド: 查看技能 / 新增技能 / 删除技能N"
+    llm_description: "Supported commands: 查看技能 / 新增技能 / 删除技能N"
+    form: llm
+
+  - name: files
+    type: files
+    required: false
+    label:
+      en_US: Zip files
+      zh_Hans: Zip压缩包
+      pt_BR: Zip files
+      ja_JP: Zipファイル
+    human_description:
+      en_US: "Zip package(s) for the 新增技能 command."
+      zh_Hans: "新增技能时上传 zip 压缩包"
+      pt_BR: "Pacote(s) zip para o comando 新增技能."
+      ja_JP: "新增技能 コマンド用の zip パッケージ。"
+    llm_description: "Zip package(s) for the add command."
+    form: form
+extra:
+  python:
+    source: tools/skill_manager.py

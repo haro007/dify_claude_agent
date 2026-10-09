@@ -1,0 +1,168 @@
+identity:
+  name: "claude_agent"
+  author: "haro007"
+  label:
+    en_US: "Claude_Agent"
+    zh_Hans: "Claude_Agent"
+    pt_BR: "Claude_Agent"
+    ja_JP: "Claude_Agent"
+description:
+  human:
+    en_US: "Agent tool built on claude_agent_sdk. Delegates tool calling, turn limiting and permissions to the SDK."
+    zh_Hans: "基于 claude_agent_sdk 的 Agent 工具，将工具调用、轮数控制与权限管理委托给 SDK"
+    pt_BR: "Ferramenta de Agent construída sobre o claude_agent_sdk. Delega chamadas de ferramenta, limite de turnos e permissões ao SDK."
+    ja_JP: "claude_agent_sdk 上に構築された Agent ツール。ツール呼び出し、ターン制限、権限を SDK に委譲します。"
+  llm: "Agent tool built on claude_agent_sdk. Delegates tool calling, turn limiting and permissions to the SDK."
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query
+      zh_Hans: 任务/问题
+      pt_BR: Query
+      ja_JP: クエリ
+    human_description:
+      en_US: "The task or question for the agent to work on."
+      zh_Hans: "想让 Agent 执行的任务或回答的问题"
+      pt_BR: "A tarefa ou pergunta para o agent trabalhar."
+      ja_JP: "Agent に実行させるタスクや質問。"
+    llm_description: "The task or question for the agent to work on."
+    form: llm
+
+  - name: skills
+    type: string
+    required: false
+    default: ""
+    label:
+      en_US: Skills
+      zh_Hans: 技能
+      pt_BR: Skills
+      ja_JP: スキル
+    human_description:
+      en_US: "Comma-separated skill names to enable for this agent. Leave empty to allow all skills. Example: read_pdf,execute_sql"
+      zh_Hans: "逗号分隔的技能名称，为空则默认启用全部技能。例如: read_pdf,execute_sql"
+      pt_BR: "Nomes de habilidades separados por vírgula. Deixe vazio para permitir todas. Exemplo: read_pdf,execute_sql"
+      ja_JP: "カンマ区切りのスキル名。空の場合はすべてのスキルを許可。例: read_pdf,execute_sql"
+    llm_description: "Comma-separated skill names to enable. Empty means all skills are available."
+    form: form
+
+  - name: mcp_servers
+    type: string
+    required: false
+    default: '{"server_name1":{"transport":"sse","url":"http://127.0.0.1:8000/sse"},"server_name2":{"transport":"streamable_http","url":"http://127.0.0.1:8000/mcp"}}'
+    label:
+      en_US: MCP Servers
+      zh_Hans: MCP 服务配置
+      pt_BR: MCP Servers
+      ja_JP: MCP サーバー
+    human_description:
+      en_US: "JSON configuration for MCP servers. Each server needs a transport type (sse / streamable_http / http) and a URL. MCP tools are auto-exposed as mcp__<server_name>__*."
+      zh_Hans: "MCP 服务的 JSON 配置。每个服务需要 transport 类型(sse / streamable_http / http)和 URL。MCP 工具自动以 mcp__<name>__* 格式暴露。"
+      pt_BR: "Configuração JSON para servidores MCP. Cada servidor precisa de um tipo de transporte (sse / streamable_http / http) e uma URL."
+      ja_JP: "MCP サーバーの JSON 設定。各サーバーにはトランスポートタイプ(sse / streamable_http / http)と URL が必要です。"
+    llm_description: "JSON config for MCP servers. transport: sse|streamable_http|http, url: endpoint."
+    form: form
+
+  - name: max_turns
+    type: number
+    required: true
+    default: 30
+    label:
+      en_US: Max turns
+      zh_Hans: 最大轮数
+      pt_BR: Max turns
+      ja_JP: 最大ターン
+    human_description:
+      en_US: "Maximum agent turns inside one call."
+      zh_Hans: "单次调用内部最多执行多少轮 Agent 推理/工具调用"
+      pt_BR: "Número máximo de turnos do agent em uma chamada."
+      ja_JP: "1回の呼び出し内での Agent の最大ターン数。"
+    llm_description: "Maximum agent turns inside one call."
+    form: form
+
+  - name: thinking
+    type: string
+    required: false
+    default: ""
+    label:
+      en_US: Thinking Config
+      zh_Hans: 思考配置
+      pt_BR: Thinking Config
+      ja_JP: 思考設定
+    human_description:
+      en_US: "Claude thinking behavior. Shorthand: adaptive / disabled / enabled:1024 (budget_tokens). Leave empty to use model default."
+      zh_Hans: "Claude 思考行为配置。简写: adaptive / disabled / enabled:1024。留空使用模型默认值。"
+      pt_BR: "Configuração de pensamento Claude. Abreviado: adaptive / disabled / enabled:1024."
+      ja_JP: "Claude の思考動作設定。省略形: adaptive / disabled / enabled:1024。"
+    llm_description: "Thinking config: adaptive / disabled / enabled:N. Empty = model default."
+    form: form
+
+  - name: effort
+    type: string
+    required: false
+    default: ""
+    label:
+      en_US: Effort Level
+      zh_Hans: 推理深度
+      pt_BR: Effort Level
+      ja_JP: 努力レベル
+    human_description:
+      en_US: "Reasoning effort level: low / medium / high / xhigh / max. Works with adaptive thinking. Leave empty for model default."
+      zh_Hans: "推理深度：low / medium / high / xhigh / max。配合 adaptive thinking 使用。留空使用模型默认值。"
+      pt_BR: "Nível de esforço de raciocínio: low / medium / high / xhigh / max."
+      ja_JP: "推論努力レベル: low / medium / high / xhigh / max。"
+    llm_description: "Reasoning effort: low / medium / high / xhigh / max. Empty = model default."
+    form: form
+
+  - name: system_prompt
+    type: string
+    required: false
+    label:
+      en_US: System prompt
+      zh_Hans: 系统提示词
+      pt_BR: System prompt
+      ja_JP: システムプロンプト
+    human_description:
+      en_US: "Custom system prompt override. Appended with skill/workspace context."
+      zh_Hans: "自定义系统提示词，会追加技能包与工作目录上下文"
+      pt_BR: "Substituição do prompt do sistema. Anexado com contexto de habilidades/workspace."
+      ja_JP: "カスタムシステムプロンプト。スキル/ワークスペースのコンテキストが追加されます。"
+    llm_description: "Custom system prompt override."
+    form: form
+
+  - name: permission_mode
+    type: string
+    required: true
+    default: acceptEdits
+    label:
+      en_US: Permission mode
+      zh_Hans: 权限模式
+      pt_BR: Permission mode
+      ja_JP: 権限モード
+    human_description:
+      en_US: "SDK permission mode: default / acceptEdits / plan."
+      zh_Hans: "SDK 权限模式：default / acceptEdits / plan"
+      pt_BR: "Modo de permissão do SDK: default / acceptEdits / plan."
+      ja_JP: "SDK 権限モード: default / acceptEdits / plan。"
+    llm_description: "SDK permission mode: default / acceptEdits / plan."
+    form: form
+
+  - name: files
+    type: files
+    required: false
+    label:
+      en_US: Files
+      zh_Hans: 上传文件
+      pt_BR: Files
+      ja_JP: ファイル
+    human_description:
+      en_US: "Uploaded files for the agent. Downloaded to workspace/uploads/ and announced via system prompt."
+      zh_Hans: "上传文件，下载到 workspace/uploads/ 并通过系统提示词告知 Agent"
+      pt_BR: "Arquivos enviados para o agent. Baixados para workspace/uploads/ e anunciados via prompt do sistema."
+      ja_JP: "Agent 用のアップロードファイル。workspace/uploads/ にダウンロードされ、システムプロンプトで通知されます。"
+    llm_description: "Uploaded files for the agent."
+    form: llm
+extra:
+  python:
+    source: tools/claude_agent.py

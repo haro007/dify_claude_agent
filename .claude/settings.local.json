@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import dify_plugin; import inspect; print\\(inspect.getfile\\(dify_plugin\\)\\)\")",
+      "Read(//g/workspace/python/agent_sdk/**)",
+      "Bash(python3 -c \"import dify_plugin; print\\(type\\(dify_plugin.Tool\\)\\)\")",
+      "Bash(pip show *)",
+      "Bash(pip3 show *)",
+      "Bash(uv show *)",
+      "Bash(xargs grep -l \"class Tool\")",
+      "Bash(python3 *)",
+      "Bash(.venv/Scripts/python.exe -c \"from claude_agent_sdk import ClaudeAgentOptions; import inspect; sig = inspect.signature\\(ClaudeAgentOptions\\); print\\('parameters:'\\); [print\\(f'  {n}: {p.annotation}'\\) for n, p in sig.parameters.items\\(\\)]; print\\(\\); print\\('model_fields:'\\); [print\\(f'  {f}'\\) for f in ClaudeAgentOptions.model_fields.keys\\(\\)]\")",
+      "Bash(.venv/Scripts/python.exe -c \"from claude_agent_sdk import ResultMessage; import inspect; sig = inspect.signature\\(ResultMessage\\); print\\('ResultMessage fields:'\\); [print\\(f'  {n}: {p.annotation}'\\) for n, p in sig.parameters.items\\(\\)]\")",
+      "Bash(python -c \"import claude_agent_sdk; print\\(claude_agent_sdk.__file__\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('tools/claude_agent.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('tools/claude_agent - 副本.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('tools/claude_agent.py', encoding='utf-8'\\).read\\(\\)\\); print\\('OK'\\)\")"
+    ]
+  }
+}

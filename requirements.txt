@@ -1,0 +1,9 @@
+dify_plugin>=0.6.2
+claude_agent_sdk==0.2.128
+python-dotenv
+requests
+python-docx
+PyPDF2
+openpyxl
+lxml
+mcp==1.28.1
